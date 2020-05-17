@@ -5,16 +5,18 @@ version=$(java -version 2>&1 | awk -F\" '{ split($2,a,"."); print a[1]}')
         echo "Java version OK"
     else
         echo "INVALID version of Java $version. Must be Java 8+"
+        exit
     fi
 
 # check python version
 version=$(python -V 2>&1 | grep -Po '(?<=Python )(.+)')
 parsedVersion=$(echo "${version//./}")
-if [[ "$parsedVersion" -gt "370" ]]
+if [[ "$parsedVersion" -ge "370" ]]
 then
     echo "Python version OK"
 else
-    echo "INVALID version $version"
+    echo "INVALID version of Python $version. Must be 3.7+"
+    exit
 fi
 
 # check if virtual env folder exists
