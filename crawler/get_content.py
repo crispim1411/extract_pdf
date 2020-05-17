@@ -20,9 +20,10 @@ def extract_content(filename):
     documents = []
     for item in items_data:
         quantity = item.loc[1]['Unnamed: 2']
+        description = item.loc[2][1]
         tp = item.loc[3][1].split('Tp:')[-1].split('\r')[0].strip()
 
-        DataFormater.add_doc(process_number, start_period, end_period, quantity, 'description', tp)
+        DataFormater.add_doc(process_number, start_period, end_period, quantity, description, tp)
     docs = DataFormater.get_docs()
     DataFormater.clear()
     return docs
