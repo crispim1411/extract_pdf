@@ -1,8 +1,5 @@
 Configuração do Ambiente do Projeto
 ************************************
-
-EXplicar oq faz
-
 Dependências
 =============
 * Python 3.7+
@@ -28,5 +25,6 @@ Procedimento de setup
     * $ mongod
 
 Utilização
-===========
+***********
+* Colocar os documentos a serem processados na pasta documents.
 * $ python run.py
