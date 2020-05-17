@@ -29,3 +29,17 @@ Utilização
 ***********
 * Colocar os documentos a serem processados na pasta documents.
 * $ python run.py
+
+Resultados
+***********
+Ao rodar o programa o mesmo mostrará os resultados da extração como o exemplo abaixo:
+
+- file1.pdf -
+
+- file2.pdf ERROR
+
+- file3.pdf OK
+
+- file4.pdf OK
+
+- file5.pdf OK
