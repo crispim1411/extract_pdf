@@ -13,7 +13,6 @@ for filename in filenames:
         docs = extract_content(filename)
         if db.count({'Processo':docs[0]['Processo']}) == 0:
             inserted = db.insert_many(docs)
-            print(f"inseridos {len(inserted.inserted_ids)}")
             docs_inserted += len(inserted.inserted_ids)
             if docs_inserted:
                 print(f"{filename} OK")
