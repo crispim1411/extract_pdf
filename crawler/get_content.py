@@ -1,35 +1,28 @@
-import os
-import wget
-from PyPDF2 import PdfFileReader as pdf_read
-
-
-def download_file(url):
-    """Baixa e salva arquivo a partir de sua url"""
-    filename = url.split('/')[-1]
-    if filename not in os.listdir():
-        filename = wget.download(url)
-    return filename
+from tabula import read_pdf
+from crawler.data_formater import DataFormater
 
 
 def extract_content(filename):
     """Extrai metadados e conteúdo de um arquivo PDF"""
-    with open(filename, 'rb') as file:
-        pdf = pdf_read(file)
-        info = pdf.getDocumentInfo()
-        number_of_pages = pdf.getNumPages()
+    data = read_pdf(filename, pages='all')
+    basic_data = None
+    items_data = []
+    for table in data:
+        if len(table) == 10 and basic_data is None:
+            basic_data = table
+        elif len(table) == 4:
+            items_data.append(table)
 
-        content = []
-        for page in pdf.pages:
-            content.append(page.extractText())
+    process_number = basic_data.loc[basic_data.get('Unnamed: 0') == 'ID da Oportunidade']['Unnamed: 1'].item()
+    start_period = basic_data.loc[basic_data.get('Unnamed: 0') == 'Início do período de cotação']['Unnamed: 1'].item()
+    end_period = basic_data.loc[basic_data.get('Unnamed: 0') == 'Fim do período de cotação']['Unnamed: 1'].item()
 
-        metadata = f"""
-        Information about {filename}:
+    documents = []
+    for item in items_data:
+        quantity = item.loc[1]['Unnamed: 2']
+        tp = item.loc[3][1].split('Tp:')[-1].split('\r')[0].strip()
 
-        Author: {info.author}
-        Creator: {info.creator}
-        Producer: {info.producer}
-        Subject: {info.subject}
-        Title: {info.title}
-        Number of pages: {number_of_pages}
-        """
-    return metadata, content
+        DataFormater.add_doc(process_number, start_period, end_period, quantity, 'description', tp)
+    docs = DataFormater.get_docs()
+    DataFormater.clear()
+    return docs

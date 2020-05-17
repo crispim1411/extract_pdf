@@ -13,6 +13,9 @@ class DBConnect:
     def insert_one(self, data):
         self.db.insert_one(data)
 
+    def insert_many(self, data):
+        self.db.insert_many(data)
+        
     def find_all(self):
         return self.db.find()
 

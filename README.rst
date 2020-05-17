@@ -9,6 +9,8 @@ Dependências
   - $ python --version
 * MongoDB
   - $ mongod --version
+* Java 8+
+  - $ java --version
 
 Procedimento de setup
 ======================
@@ -26,4 +28,4 @@ Procedimento de setup
 
 Utilização
 ===========
-* $ python 
+* $ python
