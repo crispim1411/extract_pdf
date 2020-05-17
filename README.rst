@@ -14,7 +14,8 @@ Procedimento de setup
 #. Instalar dependências do Python:
 
     * $ ./install.sh
-      *. se necessário habilite o arquivo com $ chmod +x install.sh
+     
+      * se necessário habilite o arquivo com $ chmod +x install.sh
 
 #. Ativar ambiente virtual:
 
