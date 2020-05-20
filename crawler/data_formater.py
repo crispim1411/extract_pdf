@@ -2,8 +2,9 @@ class DataFormater:
     docs = []
 
     @classmethod
-    def add_doc(cls, process, start_period, end_period, quantity, description, tp):
+    def add_doc(cls,item_number, process, start_period, end_period, quantity, description, tp):
         cls.docs.append({
+        'Número do item': item_number,
         'Processo': process,
         'Inicio do período de cotação': start_period,
         'Fim do período de cotação': end_period,

@@ -11,7 +11,7 @@ filenames = [file for file in os.listdir() if file.endswith('.pdf')]
 for filename in filenames:
     try:
         docs = extract_content(filename)
-        if db.count({'Processo':docs[0]['Processo']}) == 0:
+        if docs and db.count({'Processo':docs[0]['Processo']}) == 0:
             inserted = db.insert_many(docs)
             docs_inserted += len(inserted.inserted_ids)
             if docs_inserted:
