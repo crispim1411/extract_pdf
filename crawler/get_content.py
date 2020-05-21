@@ -17,7 +17,10 @@ def extract_content(filename):
                 item_number = int(table.loc[2].values[0])
                 quantity = table.loc[2].values[3]
                 description = table.loc[3].values[1]
-                tp = table.loc[4].values[1].split('Tp:')[-1].split('\r')[0].strip()
+                long_description = table.loc[4].values[1]
+                tp = None
+                if 'Tp:' in long_description:
+                    tp = table.loc[4].values[1].split('Tp:')[-1].split('\r')[0].strip()
                 DataFormater.add_doc(process_number, item_number, start_period, end_period, quantity, description, tp)
 
                 if item_number != (previous_item_number + 1):
