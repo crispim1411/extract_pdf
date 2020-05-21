@@ -1,5 +1,7 @@
 Configuração do Ambiente do Projeto
 ************************************
+Programa destinado a extração de tabelas de processo de arquivos PDF através da biblioteca tabula.
+
 Dependências
 =============
 * Python 3.7+
@@ -14,7 +16,7 @@ Procedimento de setup
 #. Instalar dependências do Python:
 
     * $ ./install.sh
-     
+
       * se necessário habilite o arquivo com $ chmod +x install.sh
 
 #. Ativar ambiente virtual:
@@ -27,7 +29,7 @@ Procedimento de setup
 
 Utilização
 ***********
-* Colocar os documentos a serem processados na pasta documents.
+* Colocar os documentos a serem processados na pasta /documents
 * $ python run.py
 
 Resultados
