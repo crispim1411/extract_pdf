@@ -18,7 +18,7 @@ for filename in filenames:
                 print(f"{filename} OK | {len(inserted.inserted_ids)} documentos")
         else:
             print(f"{filename} -")
-    except Exception as e:
+    except:
         print(f"{filename} ERROR")
 
 print(f"{docs_inserted} documentos inseridos na base de dados MongoDB.")

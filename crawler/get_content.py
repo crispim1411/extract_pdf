@@ -5,8 +5,9 @@ from crawler.data_formater import DataFormater
 def extract_content(filename):
     """Extrai conteúdo de um arquivo PDF com base em tabela de processos específica"""
     try:
-        data = read_pdf(filename, lattice=True, pages='all', pandas_options={'header':None})
+        DataFormater.clear()
         previous_item_number = 0
+        data = read_pdf(filename, lattice=True, pages='all', pandas_options={'header':None})
         for table in data:
             if table.isin(['Dados Básicos']).any(axis = None):
                 process_number = table.where(table[0]=='ID da Oportunidade').dropna().values[0][1]
@@ -27,9 +28,7 @@ def extract_content(filename):
                     raise Exception("Não foi possível a extraição de todos os itens.")
                 previous_item_number = item_number
 
-        docs = DataFormater.get_docs()
-        DataFormater.clear()
-        return process_number, docs
+        return process_number, DataFormater.get_docs()
 
     except Exception as e:
         raise e
