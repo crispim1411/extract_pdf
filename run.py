@@ -10,12 +10,12 @@ os.chdir('documents')
 filenames = [file for file in os.listdir() if file.endswith('.pdf')]
 for filename in filenames:
     try:
-        docs = extract_content(filename)
-        if docs and db.count({'Processo':docs[0]['Processo']}) == 0:
+        process, docs = extract_content(filename)
+        if docs and db.count({'Processo': process}) == 0:
             inserted = db.insert_many(docs)
             docs_inserted += len(inserted.inserted_ids)
             if docs_inserted:
-                print(f"{filename} OK")
+                print(f"{filename} OK | {len(inserted.inserted_ids)} documentos")
         else:
             print(f"{filename} -")
     except Exception as e:

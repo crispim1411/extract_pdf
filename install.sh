@@ -9,7 +9,7 @@ version=$(java -version 2>&1 | awk -F\" '{ split($2,a,"."); print a[1]}')
     fi
 
 # check python version
-version=$(python -V 2>&1 | grep -Po '(?<=Python )(.+)')
+version=$(python3 -V 2>&1 | grep -Po '(?<=Python )(.+)')
 parsedVersion=$(echo "${version//./}")
 if [[ "$parsedVersion" -ge "370" ]]
 then
@@ -24,7 +24,7 @@ if [ -d "venv" ]; then
   echo "Virtual Environment OK"
 else
   echo "Creating Virtual Environment"
-  python -m venv venv
+  python3 -m venv venv
 fi
 
 # installing python dependencies
