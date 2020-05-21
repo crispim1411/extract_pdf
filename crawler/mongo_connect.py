@@ -8,10 +8,11 @@ COLLECTION = "pdf"
 class DBConnect:
     def __init__(self):
         try:
-            self.client = MongoClient(username = USER, password = PASS)
+            self.client = MongoClient(username = USER, password = PASS, serverSelectionTimeoutMS = 2000)
             self.db = self.client[DBNAME][COLLECTION]
-        except Exception as e:
-            print(f"Não foi possível conexão com banco de dados: {e}")
+            self.client.server_info()
+        except:
+            print(f"Não foi possível conexão com banco de dados.")
 
     def count(self, filter):
         return self.db.count_documents(filter)
