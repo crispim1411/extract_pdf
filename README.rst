@@ -5,10 +5,13 @@ Programa destinado a extração de tabelas de processo de arquivos PDF através 
 Dependências
 =============
 * Python 3.7+
+
   - $ python --version
 * MongoDB
+
   - $ mongod --version
 * Java 8+
+
   - $ java --version
 
 Procedimento de setup
